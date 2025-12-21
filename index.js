@@ -58,7 +58,7 @@ startButton.addEventListener('click', () => {
   updateGameSize()
   setTimeout(() => {
     addDucks()
-  }, 2000)
+  }, 1300)
 
   // Start game loop
   setInterval(() => {
@@ -196,8 +196,9 @@ function addDog () {
   dog.style.backgroundSize = 'contain'
   dog.style.backgroundPosition = 'center'
   dog.style.position = 'fixed'
-  dog.style.bottom = '0px'
-  dog.style.left = '50%'
+  
+dog.setAttribute("id", "dog")
+  // dog.style.left = '50%'
   dog.draggable = false
 
   // 🐕 Dog sound
