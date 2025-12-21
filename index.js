@@ -58,7 +58,7 @@ startButton.addEventListener('click', () => {
   updateGameSize()
   setTimeout(() => {
     addDucks()
-  }, 1300)
+  }, 1000)
 
   // Start game loop
   setInterval(() => {
