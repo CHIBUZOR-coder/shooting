@@ -1,5 +1,8 @@
 // const bgMusic = new Audio('sounds/bg-music.mp3')
 // const swapSound = new Audio('sounds/swap.mp3')
+// Option 2: run immediately
+let highScore = localStorage.getItem('highscore') || 'Nill'
+document.getElementById('highscore').innerText = highScore
 
 // Reusable sounds (created ONCE)
 const shootSound = new Audio('sound/duck-shot.mp3')
@@ -111,7 +114,14 @@ function addDucks () {
       shootSound.play()
 
       score++
+
+      if (highScore < score) {
+        highScore = score
+        localStorage.setItem('highscore', highScore)
+      }
+
       document.getElementById('score').innerText = score
+      document.getElementById('highscore').innerText = highScore
 
       document.body.removeChild(duck.currentDuck)
       ducks = ducks.filter(d => d !== duck)
