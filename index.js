@@ -91,7 +91,7 @@ function addDucks () {
     currentDuck.style.backgroundRepeat = 'no-repeat'
     currentDuck.style.backgroundSize = 'contain'
     currentDuck.style.backgroundPosition = 'center'
-    currentDuck.style.backgroundImage = `url("/images/${currentImage}")`
+    currentDuck.style.backgroundImage = `url("images/${currentImage}")`
     currentDuck.draggable = false
 
     let velocityX =
@@ -153,8 +153,8 @@ function randomPosition (limit) {
 function updateDuckDirection (duck) {
   duck.currentDuck.style.backgroundImage =
     duck.velocityX < 0
-      ? `url("/images/${duckImageNames[0]}")`
-      : `url("/images/${duckImageNames[1]}")`
+      ? `url("images/${duckImageNames[0]}")`
+      : `url("images/${duckImageNames[1]}")`
 }
 
 // ========================================
@@ -191,8 +191,8 @@ function moveDucks () {
 // ========================================
 
 function addDog () {
-  const one = `url("/images/dog-duck1.png")`
-  const two = `url("/images/dog-duck2.png")`
+  const one = `url("images/dog-duck1.png")`
+  const two = `url("images/dog-duck2.png")`
 
   let dog = document.createElement('div')
   dog.style.backgroundImage = duckCount === 2 ? two : one
