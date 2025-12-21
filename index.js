@@ -204,8 +204,12 @@ function addDog () {
 
   setTimeout(() => {
     document.body.removeChild(dog)
-    duckVelocityX += 1
-    duckVelocityY += 1
+    duckVelocityX += 0.5
+    duckVelocityY += 0.5
+
+    console.log('velx:', duckVelocityX)
+    console.log('vely:', duckVelocityY)
+
     addDucks()
   }, 5000)
 }
