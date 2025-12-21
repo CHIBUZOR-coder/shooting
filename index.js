@@ -1,8 +1,10 @@
 // const bgMusic = new Audio('sounds/bg-music.mp3')
 // const swapSound = new Audio('sounds/swap.mp3')
 // Option 2: run immediately
-let highScore = localStorage.getItem('highscore') || 'Nill'
+
+let highScore = localStorage.getItem('highscore') || 0
 document.getElementById('highscore').innerText = highScore
+console.log("hs", highScore);
 
 // Reusable sounds (created ONCE)
 const shootSound = new Audio('sound/duck-shot.mp3')
