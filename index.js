@@ -2,10 +2,10 @@
 // const swapSound = new Audio('sounds/swap.mp3')
 
 // Reusable sounds (created ONCE)
-const shootSound = new Audio('/sound/duck-shot.mp3')
-const duckQuack = new Audio('/sound/duck-quack.mp3')
-const duckFlap = new Audio('/sound/duck-flap.mp3')
-const dogSound = new Audio('/sound/dog-score.mp3')
+const shootSound = new Audio('sound/duck-shot.mp3')
+const duckQuack = new Audio('sound/duck-quack.mp3')
+const duckFlap = new Audio('sound/duck-flap.mp3')
+const dogSound = new Audio('sound/dog-score.mp3')
 
 // Improve responsiveness
 duckQuack.preload = 'auto'
