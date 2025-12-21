@@ -16,7 +16,7 @@ dogSound.preload = 'auto'
 duckQuack.volume = 0.7
 duckFlap.volume = 0.6
 dogSound.volume = 0.8
-let soundEnabled = false
+
 
 // ========================================
 // STEP 1: GAME CONFIGURATION
@@ -38,21 +38,15 @@ function updateGameSize () {
   gameHeight = window.innerHeight * 0.75
 }
 
-let duckVelocityX = 5
-let duckVelocityY = 5
+let duckVelocityX = 4
+let duckVelocityY = 4
 
 let score = 0
 
 // ========================================
 // STEP 2: START GAME AFTER PAGE LOAD
 // ========================================
-document.addEventListener(
-  'pointerdown',
-  () => {
-    soundEnabled = true
-  },
-  { once: true }
-)
+
 
 const startButton = document.getElementById('startButton')
 
@@ -106,10 +100,10 @@ function addDucks () {
     }
 
     // 🔊 Duck appears → quack
-    if (soundEnabled) {
+  
       duckQuack.currentTime = 0
       duckQuack.play()
-    }
+    
 
     duck.currentDuck.addEventListener('pointerdown', e => {
       e.preventDefault()
