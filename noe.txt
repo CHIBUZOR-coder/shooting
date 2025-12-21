@@ -1,0 +1,67 @@
+OUTER BOX (full screen)
+┌──────────────────────────────────────────┐
+│                                          │
+│  SAFE MOVEMENT AREA                       │
+│  ┌──────────────────────────────────┐   │
+│  │   ● ← duck’s top-left point       │   │
+│  │     (this is what moves)          │   │
+│  └──────────────────────────────────┘   │
+│                                          │
+└──────────────────────────────────────────┘
+
+
+
+
+//**duck x MOVEMENT
+1.//Before hitting the wall
+|----------------------------------------------|
+                     [  DUCK  ]
+                     ^
+                   duck.x
+
+
+2.//Exactly at the RIGHT boundary
+|----------------------------------------------|
+                          [  DUCK  ]
+                          ^
+          duck.x = gameWidth - duckwidth
+
+the if statement (duck.x >= gameWidth - duckwidth   ✅) be comes true
+//Code triggers → velocity flips
+//velocityX = +5   →   velocityX = -5
+
+
+
+3.//After bounce (next frame)
+Duck moves LEFT, cleanly, without clipping.
+|----------------------------------------------|
+                    [  DUCK  ]
+                    ^
+
+
+
+ 4.                   Exactly at the LEFT boundary
+|----------------------------------------------|
+[  DUCK  ]
+^
+duck.x = 0
+
+//the if statement (duck.x <= 0   ✅) is true
+//Code triggers → velocity flips
+//velocityX = -5   →   velocityX = +5
+
+
+5.After bounce (next frame)
+|----------------------------------------------|
+        [  DUCK  ]
+        ^
+
+
+Duck moves RIGHT, cleanly.
+
+
+
+
+***Mental rule (lock this in)
+LEFT wall  → duck.x <= 0
+RIGHT wall → duck.x >= gameWidth - duckwidth
