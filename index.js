@@ -17,7 +17,6 @@ duckQuack.volume = 0.7
 duckFlap.volume = 0.6
 dogSound.volume = 0.8
 
-
 // ========================================
 // STEP 1: GAME CONFIGURATION
 // ========================================
@@ -46,7 +45,6 @@ let score = 0
 // ========================================
 // STEP 2: START GAME AFTER PAGE LOAD
 // ========================================
-
 
 const startButton = document.getElementById('startButton')
 
@@ -100,10 +98,9 @@ function addDucks () {
     }
 
     // 🔊 Duck appears → quack
-  
-      duckQuack.currentTime = 0
-      duckQuack.play()
-    
+
+    duckQuack.currentTime = 0
+    duckQuack.play()
 
     duck.currentDuck.addEventListener('pointerdown', e => {
       e.preventDefault()
@@ -175,8 +172,6 @@ function moveDucks () {
 
     duck.currentDuck.style.left = `${duck.x}px`
     duck.currentDuck.style.top = `${duck.y}px`
-
-   
   }
 }
 
@@ -196,8 +191,8 @@ function addDog () {
   dog.style.backgroundSize = 'contain'
   dog.style.backgroundPosition = 'center'
   dog.style.position = 'fixed'
-  
-dog.setAttribute("id", "dog")
+
+  dog.setAttribute('id', 'dog')
   // dog.style.left = '50%'
   dog.draggable = false
 
@@ -209,6 +204,8 @@ dog.setAttribute("id", "dog")
 
   setTimeout(() => {
     document.body.removeChild(dog)
+    duckVelocityX += 1
+    duckVelocityY += 1
     addDucks()
   }, 5000)
 }
