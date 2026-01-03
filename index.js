@@ -24,6 +24,7 @@ dogSound.volume = 0.8
 
 let ducks = []
 let duckCount//this tells how many ducks can display in screen
+let gameLevel = 1
 
 let duckImageNames = ['duck-left.gif', 'duck-right.gif']
 
@@ -140,6 +141,8 @@ function addDucks () {
       // If all ducks are gone, add a dog
       if (ducks.length === 0) {
         addDog()
+        gameLevel += 1
+        document.getElementById('level').innerText = gameLevel
       }
     })
   }
