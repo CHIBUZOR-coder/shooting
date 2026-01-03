@@ -65,3 +65,61 @@ Duck moves RIGHT, cleanly.
 ***Mental rule (lock this in)
 LEFT wall  → duck.x <= 0
 RIGHT wall → duck.x >= gameWidth - duckwidth
+
+
+
+
+
+//*****Case II*** WRONG
+//Random position with duck going off-screen.
+//Using randomPosition(1000)
+SCREEN WIDTH = 1000px
+┌──────────────────────────────────────────────────────────────┐
+0px                                                          1000px
+                                                              │
+                                                              │
+                                                      Duck starts here
+                                                      left = 980px
+                                                      ┌──────────────┐
+                                                      │    DUCK      │
+                                                      │   96px wide  │
+                                                      └──────────────┘
+                                                              ├────── 76px OFF-SCREEN
+
+
+
+//*****Case II*** CORECT
+Using randomPosition(1000 - 96) → randomPosition(904)
+SCREEN WIDTH = 1000px
+┌──────────────────────────────────────────────────────────────┐
+0px                                                       1000px
+                                      Duck starts here
+                                      left = 904px
+                                      ┌──────────────┐
+                                      │    DUCK      │
+                                      │   96px wide  │
+                                      └──────────────┘
+                                      │
+                                      │ Duck fits perfectly
+
+****The duck object is the game’s single source of truth for one duck — it stores its position, movement, and a reference to its visual DOM element so the game can update, move, and remove that duck correctly.
+In a clear nutshell (refined)
+
+****The duck object lets each duck keep its own independent state (x, y, velocity, DOM element), so when we loop through ducks, we can update one duck at a time without interfering with the others.
+
+
+
+
+//
+Before hit:
+duck.x = 780
+velocityX = 4
+
+Move:
+duck.x = 784  (hits edge)
+
+Flip:
+velocityX = -4
+
+Next frame:
+duck.x = 780

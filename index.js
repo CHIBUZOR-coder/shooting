@@ -1,10 +1,6 @@
-// const bgMusic = new Audio('sounds/bg-music.mp3')
-// const swapSound = new Audio('sounds/swap.mp3')
-// Option 2: run immediately
-
 let highScore = localStorage.getItem('highscore') || 0
 document.getElementById('highscore').innerText = highScore
-console.log("hs", highScore);
+console.log('hs', highScore)
 
 // Reusable sounds (created ONCE)
 const shootSound = new Audio('sound/duck-shot.mp3')
@@ -27,7 +23,7 @@ dogSound.volume = 0.8
 // ========================================
 
 let ducks = []
-let duckCount = 1
+let duckCount//this tells how many ducks can display in screen
 
 let duckImageNames = ['duck-left.gif', 'duck-right.gif']
 
@@ -44,7 +40,6 @@ function updateGameSize () {
 
 let duckVelocityX = 4
 let duckVelocityY = 4
-
 let score = 0
 
 // ========================================
@@ -60,7 +55,11 @@ startButton.addEventListener('click', () => {
   // Initialize game
   updateGameSize()
   setTimeout(() => {
+    // ****** ADD DUCKS TO START THE GAME
     addDucks()
+    // this will involve creating ducks (step3) which also has an event listener for shooting ducks
+    //Also uses random position helper function
+    // ******
   }, 1000)
 
   // Start game loop
@@ -91,6 +90,7 @@ function addDucks () {
     currentDuck.style.backgroundImage = `url("images/${currentImage}")`
     currentDuck.draggable = false
 
+    //randomize initial velocity direction using the image direction
     let velocityX =
       currentImage === duckImageNames[0] ? -duckVelocityX : duckVelocityX
 
@@ -103,10 +103,17 @@ function addDucks () {
     }
 
     // 🔊 Duck appears → quack
-
+    //Also set the random duck position before quack
     duckQuack.currentTime = 0
     duckQuack.play()
+    currentDuck.style.left = `${duck.x}px`
+    currentDuck.style.top = `${duck.y}px`
 
+    //store the duck in the DOM(duck array)
+    document.body.append(currentDuck)
+    ducks.push(duck)
+
+    //listen to events that trigger when duck is clicked
     duck.currentDuck.addEventListener('pointerdown', e => {
       e.preventDefault()
       e.stopPropagation()
@@ -125,19 +132,16 @@ function addDucks () {
       document.getElementById('score').innerText = score
       document.getElementById('highscore').innerText = highScore
 
+
+      //remove duck from dom and stored ducks array
       document.body.removeChild(duck.currentDuck)
       ducks = ducks.filter(d => d !== duck)
 
+      // If all ducks are gone, add a dog
       if (ducks.length === 0) {
         addDog()
       }
     })
-
-    currentDuck.style.left = `${duck.x}px`
-    currentDuck.style.top = `${duck.y}px`
-
-    document.body.append(currentDuck)
-    ducks.push(duck)
   }
 }
 
@@ -150,18 +154,7 @@ function randomPosition (limit) {
 }
 
 // ========================================
-// STEP 5: UPDATE DUCK IMAGE BASED ON VELOCITY
-// ========================================
-
-function updateDuckDirection (duck) {
-  duck.currentDuck.style.backgroundImage =
-    duck.velocityX < 0
-      ? `url("images/${duckImageNames[0]}")`
-      : `url("images/${duckImageNames[1]}")`
-}
-
-// ========================================
-// STEP 6: MOVE DUCKS EACH FRAME
+// STEP 5: MOVE DUCKS EACH FRAME
 // ========================================
 
 function moveDucks () {
@@ -171,6 +164,7 @@ function moveDucks () {
 
     if (duck.x <= 0 || duck.x >= gameWidth - duckwidth) {
       duck.velocityX *= -1
+      //change image based on direction
       updateDuckDirection(duck)
       duckFlap.currentTime = 0
       duckFlap.play()
@@ -185,6 +179,16 @@ function moveDucks () {
     duck.currentDuck.style.left = `${duck.x}px`
     duck.currentDuck.style.top = `${duck.y}px`
   }
+}
+// ========================================
+// STEP 6: UPDATE DUCK IMAGE BASED ON VELOCITY
+// ========================================
+
+function updateDuckDirection (duck) {
+  duck.currentDuck.style.backgroundImage =
+    duck.velocityX < 0
+      ? `url("images/${duckImageNames[0]}")`
+      : `url("images/${duckImageNames[1]}")`
 }
 
 // ========================================
@@ -216,8 +220,8 @@ function addDog () {
 
   setTimeout(() => {
     document.body.removeChild(dog)
-    duckVelocityX += 0.5
-    duckVelocityY += 0.5
+    duckVelocityX += 0.2
+    duckVelocityY += 0.2
 
     console.log('velx:', duckVelocityX)
     console.log('vely:', duckVelocityY)
