@@ -81,6 +81,7 @@ function addDucks () {
     let currentImage =
       duckImageNames[Math.floor(Math.random() * duckImageNames.length)]
 
+
     let currentDuck = document.createElement('div')
     currentDuck.style.width = `${duckwidth}px`
     currentDuck.style.height = `${duckHeight}px`
